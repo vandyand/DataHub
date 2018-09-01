@@ -1,0 +1,2 @@
+set, item, score
+    1,   9,     1

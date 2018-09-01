@@ -1,0 +1,2 @@
+mparallel.exe --count=3 --shell C:/Program Files (x86)/OANDA - MetaTrader\batch_backtests.bat : C:/Program Files (x86)/OANDA - MetaTrader - Copy\batch_backtests.bat : C:/Program Files (x86)/OANDA - MetaTrader - Copy (2)\batch_backtests.bat
+exit

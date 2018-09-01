@@ -1,0 +1,22 @@
+To run this big convoluted thing set up your hyperparameters in master_hyper_setup.py and then run it. Make sure all 
+metatrader terminals you're going to use have the history downloaded for whatever currency pair your training on. 
+
+master_hyper_setup.py automatically runs mamamamaster.bat which first runs delete_files.py and then runs
+big_master_backtests_generator.py {} <- hyperparameter.txt agrument for getting the right parameters. After this it runs
+start /wait "" "master_batch_file.bat" which splits off into the (three) metatrader applications for generating backtests.
+Once these backtests are done this process is finished and if back_or_live==0 it runs golf_analysis.py {} <- same thing (not
+sure why...) and then runs final_analysis.py. If back_or_live == 1 it doesn't run golf_analysis.py because it doesn't have
+any fore data. Instead it goes straight to live_analysis.py (not final_analysis.py). final_analysis.py spits out the item
+and score number of the best performing rolling back/fore tests in final_ea_params.txt in the back folder. live_analysis.py
+spits out the final ea params in final_ea_params.txt in the live folder.
+
+golf_analysis.py should work for india version as well because they output the same data (lists of trade returns - as
+opposed to all the trading stats which versions foxtrot and hotel return).
+
+Somewhere in this system expert advisers get copied from the first metatrader instance to the others for very very nice
+convenience!
+
+Also, a parameters.txt file is printed into each set# file so you know what parameters where used to generate all those
+results.
+
+If you're live testing (back_or_live == 1) it's stupid to do more than 1 backtest...
