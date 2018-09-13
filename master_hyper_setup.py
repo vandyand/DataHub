@@ -75,7 +75,7 @@ Short_Back_2_Start = 1
 Short_Back_2_Step = 1
 Open_Bars_Start = 2
 Open_Bars_Step = 1
-if EA = "DiscreteModelMaker\IndiaDiscreteModelMaker" or EA = "DiscreteModelMaker\HotelDiscreteModelMaker":
+if EA == "DiscreteModelMaker\IndiaDiscreteModelMaker" or EA == "DiscreteModelMaker\HotelDiscreteModelMaker":
     Open_Bars_Step = 0 # Because india and hotel don't use open_bars for open positions hold time
 Lots_Value = 0.01
 get_random_results = 1

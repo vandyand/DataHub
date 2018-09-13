@@ -58,7 +58,7 @@ def import_data(filepath):
 #    print(file_count)
     return(data)
 
-
+print('Importing data...')
 final_data = [ import_data('{}\Set{}\{}'.format(live_file_path,data_set_num,f)) for f in os.listdir() if '.csv' in f]
 
 
@@ -67,19 +67,26 @@ final_data = [ import_data('{}\Set{}\{}'.format(live_file_path,data_set_num,f)) 
 count = 0
 # Get back stats
 for data in final_data:
+    print(str(count+1)+' out of '+str(len(final_data))+' calculating...')
     lenn = data.shape[0]
+    print('...calculating bsplits...')
     bsplits  = [ data['btrades'][x].split() for x in range(lenn) ]
+    print('...calculating btrades...')
     data['btrades'] = [ [float(bsplits[x][y]) for y in range(len(bsplits[x]))] for x in range(len(bsplits)) ]
     data['bpos_trades'] = [ [data['btrades'][x][y] for y in range(len(data['btrades'][x])) if data['btrades'][x][y]>0] for x in range(lenn) ]
     data['bneg_trades'] = [ [data['btrades'][x][y] for y in range(len(data['btrades'][x])) if data['btrades'][x][y]<=0] for x in range(lenn) ]
     data['bnum_trades'] = [ len(data['btrades'][x]) for x in range(lenn) ]
+    print('...calculating gross profit...')
     data['bgross_profit'] = [ sum(data['bpos_trades'][x]) for x in range(lenn) ]
     data['bgross_loss'] = [ sum(data['bneg_trades'][x]) for x in range(lenn) ]
     data['bprofit'] = data['bgross_profit'] + data['bgross_loss']
+    print('...calculating profit factor...')
     data['bprofit_factor'] =[ data['bgross_profit'][x] / data['bgross_loss'][x] * -1 if data['bgross_loss'][x]!=0 else data['bnum_trades'][x] for x in range(lenn) ]
     data['bexpected_payoff'] = data['bprofit'] / data['bnum_trades']
+    print('...calculating standard deviation...')
     data['bstd'] = [ np.std(data['btrades'][x]) if np.std(data['btrades'][x])>0.00001 else 0 for x in range(lenn) ]
     data['bneg_std'] = [ np.std(data['bneg_trades'][x]) if bool(data['bneg_trades'][x]) and np.std(data['bneg_trades'][x])>0.00001 else 0 for x in range(lenn) ]
+    print('...calculating sharpe and sortino...')
     data['bsharpe'] = [ data['bexpected_payoff'][x] / data['bstd'][x] if data['bstd'][x]!=0 else data['bnum_trades'][x] if data['bprofit'][x]>0 else data['bnum_trades'][x] * -1 for x in range(lenn) ]
     data['bsortino'] = [ data['bexpected_payoff'][x] / data['bneg_std'][x] if data['bneg_std'][x]!=0 else data['bnum_trades'][x] if data['bprofit'][x]>0 else data['bnum_trades'][x] * -1 for x in range(lenn) ]
     
@@ -87,7 +94,7 @@ for data in final_data:
 #    fsplits  = [ data['ftrades'][x].split() for x in range(lenn) ]
 #    data['ftrades'] = [ [float(fsplits[x][y]) for y in range(len(fsplits[x]))] for x in range(len(fsplits)) ]
     
-    print(count)
+    print(str(count+1)+' out of '+str(len(final_data))+' done.')
     count += 1
     
 
