@@ -4,9 +4,12 @@ import os
 import pandas as pd
 import re
 import matplotlib.pyplot as plt
+from filepaths import filepaths as fps
 
-data_hub_file_path = 'C:\\Users\\Dell\\Desktop\\PythonAlgoFolder\\DataHub'
-back_file_path = data_hub_file_path+'\\Back'
+filepaths = fps()
+
+data_hub_file_path = filepaths['DataHub']
+back_file_path = filepaths['Back']
 
 os.chdir(data_hub_file_path)
 

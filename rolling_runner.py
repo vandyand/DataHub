@@ -11,13 +11,13 @@ import time
 import psutil
 import os
 import subprocess
+from filepaths import filepaths as fps
 
-data_hub_file_path = 'C:\\Users\\Dell\\Desktop\\PythonAlgoFolder\\DataHub'
-live_file_path = data_hub_file_path + '\\Live'
+filepaths = fps()
 
-# Rolling_runner update frequency (seconds) - This is the period for dictating
-# when the body of the code (below) runs.
-reset_period = 60 # Reset every ____ seconds.
+data_hub_file_path = filepaths['DataHub']
+live_file_path = filepaths['Live']
+
 
 # setup .txt file parameters
 txt_file_path = "C:/Program Files (x86)/OANDA - MetaTrader" # Same as batch_file_path from big_master_backtests_generator.py
@@ -40,6 +40,10 @@ bat_file_path = txt_file_path
 filename_bat = 'setup_live_ea.bat'
 
 
+# Rolling_runner update frequency (seconds) - This is the period for dictating
+# when the body of the code (below) runs.
+reset_period = 60 # Reset every ____ seconds.
+
 os.chdir(live_file_path)
 
 count = 0
@@ -48,9 +52,9 @@ start = False
 while True:
     # Start_cond is for when to start it. The whole system should update itself
     # (start).
-    start_cond = datetime.weekday(datetime.now()) in range(5)      \
-                 and int(datetime.timestamp(datetime.now())) % reset_period == 0
-    print(int(datetime.timestamp(datetime.now())) % reset_period)
+    start_cond = datetime.weekday(datetime.now()) in range(5) and datetime.now().hour == 1 and datetime.now().minute == 17 # and int(datetime.timestamp(datetime.now())) % reset_period ==0
+                  #Wait until 1:17 on a weekday
+    #print(int(datetime.timestamp(datetime.now())) % reset_period)
     time.sleep(0.99)
 
     
@@ -72,8 +76,8 @@ while True:
     # final_ea_params-Set####.txt in the "Live" directory.
 #    os.chdir(live_file_path)
 #    if start and file_condition:
-        os.chdir(live_file_path)    
-        final_ea_params_filename = [ i for i in os.listdir() if '.txt' in i if str(datetime.now().year)+str(datetime.now().month).zfill(2)+str(datetime.now().day).zfill(2)+str(datetime.now().hour).zfill(2) in i ][-1]
+        os.chdir(live_file_path)
+        final_ea_params_filename = [ i for i in os.listdir() if '.txt' in i if str(datetime.now().year)+str(datetime.now().month).zfill(2) in i ][-1]
         with open(live_file_path+'\\'+final_ea_params_filename,'r') as params_file:
             ea_params = params_file.read()
             ea_params = [ int(i) for i in ea_params.replace('[','').replace(']','').replace(' ','').split(',') ]

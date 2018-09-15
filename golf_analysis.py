@@ -6,10 +6,13 @@ import sys
 import os
 import matplotlib.pyplot as plt
 import scipy.stats as st
+from filepaths import filepaths as fps
 
-data_hub_file_path = 'C:\\Users\\Dell\\Desktop\\PythonAlgoFolder\\DataHub'
-back_file_path = data_hub_file_path+'\\Back'
-live_file_path = data_hub_file_path+'\\Live'
+filepaths = fps()
+
+data_hub_file_path = filepaths['DataHub']
+back_file_path = filepaths['Back']
+live_file_path = filepaths['Live']
 os.chdir(data_hub_file_path)
 
 try:

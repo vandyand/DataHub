@@ -7,19 +7,21 @@ import os
 import calendar
 import time
 from datetime import datetime, timedelta
+from filepaths import filepaths as fps
+
+filepaths = fps()
 
 
     
-data_hub_file_path = 'C:\\Users\\Dell\\Desktop\\PythonAlgoFolder\\DataHub'
-back_file_path = data_hub_file_path+'\\Back'
-live_file_path = data_hub_file_path+'\\Live'
-batch_file_paths = ["C:/Program Files (x86)/OANDA - MetaTrader",
-              "C:/Program Files (x86)/OANDA - MetaTrader - Copy",
-              "C:/Program Files (x86)/OANDA - MetaTrader - Copy (2)"]
-params_sets_file_paths = ["C:/Program Files (x86)/OANDA - MetaTrader/tester",
-                          "C:/Program Files (x86)/OANDA - MetaTrader - Copy/tester",
-                          "C:/Program Files (x86)/OANDA - MetaTrader - Copy (2)/tester"]
+data_hub_file_path = filepaths['DataHub']
+back_file_path = filepaths['Back']
+live_file_path = filepaths['Live']
+batch_file_paths = [filepaths['MT-1'],filepaths['MT-2'],filepaths['MT-3']]
+params_sets_file_paths = [filepaths['MT-1tester'],filepaths['MT-2tester'],
+                          filepaths['MT-3tester']]
 
+
+        
 os.chdir(data_hub_file_path)
 
 contents = open('hyperparameters.txt','r+').read()

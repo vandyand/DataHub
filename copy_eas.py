@@ -2,11 +2,12 @@
 
 
 import shutil
+from filepaths import filepaths as fps
 
-ea_paths = [
-        "C:/Program Files (x86)/OANDA - MetaTrader/MQL4/Experts",
-        "C:/Program Files (x86)/OANDA - MetaTrader - copy/MQL4/Experts",
-        "C:/Program Files (x86)/OANDA - MetaTrader - copy (2)/MQL4/Experts"]
+filepaths = fps()
+
+ea_paths = [filepaths['MT-1Experts'],filepaths['MT-1Experts'],
+            filepaths['MT-1Experts']]
 
 #try:
 #    shutil.rmtree(ea_paths[1])

@@ -1,15 +1,14 @@
 
 import os
 import re
+from filepaths import filepaths as fps
 
+filepaths = fps()
 
-data_hub_file_path = 'C:\\Users\\Dell\\Desktop\\PythonAlgoFolder\\DataHub'
-batch_file_paths = ["C:/Program Files (x86)/OANDA - MetaTrader",
-              "C:/Program Files (x86)/OANDA - MetaTrader - Copy",
-              "C:/Program Files (x86)/OANDA - MetaTrader - Copy (2)"]
-params_sets_file_paths = ["C:/Program Files (x86)/OANDA - MetaTrader/tester",
-                          "C:/Program Files (x86)/OANDA - MetaTrader - Copy/tester",
-                          "C:/Program Files (x86)/OANDA - MetaTrader - Copy (2)/tester"]
+data_hub_file_path = filepaths['DataHub']
+batch_file_paths = [filepaths['MT-1'],filepaths['MT-2'],filepaths['MT-3']]
+params_sets_file_paths = [filepaths['MT-1tester'],filepaths['MT-2tester'],
+                          filepaths['MT-3tester']]
 
 
 for i in range(3):
