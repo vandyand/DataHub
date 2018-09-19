@@ -6,10 +6,10 @@ filepaths = fps()
 
 # Set this value to True if you're going to run live with rolling_runner.py
 # Rolling_runner.py is what's used for live testing this whole system.
-rolling_runner = True
+rolling_runner = False
 
 # Hyperparameters:
-num_iterations = 50 # Number of time_periods to go back
+num_iterations = 12 # Number of time_periods to go back
 back_step_sizes = [1]#[20,10,5,1] #How many work days to go back per iteration (20 workdays = 4 weeks, etc...)
 back_stepss = [3]#[3,4,5]# For determining start date (For example 2 back_steps * 5 work days (back_step_size) = 10 work days = 2 weeks)
 fore_stepss = [1]#[1,2]# For determining start and split date
@@ -38,12 +38,12 @@ else: #Modify these values for custom start datetime (really end...)
 
 
     
-data_set_num = 5000
+data_set_num = 5001
 if rolling_runner:
     data_set_num = int(str(datetime.now().year)+str(datetime.now().month).zfill(2)+str(datetime.now().day).zfill(2)+str(datetime.now().hour).zfill(2)+str(datetime.now().minute).zfill(2)+str(datetime.now().second).zfill(2)+'0000')
 
 EA = "DiscreteModelMaker\IndiaDiscreteModelMaker"
-symbols = ['AUDUSD']
+symbols = ['GBPUSD']
 spread = 15
 
 
@@ -51,7 +51,7 @@ spread = 15
 lookback_time_dayss = [5]#[50,10,5,2]#For opening and closing trades parameters
 holding_time_dayss = [1] # This has no effect for hotel and india as they're 
                          # not looking at Open_Bars for a closing condition.
-Chart_Timeframes = ['M15']
+Chart_Timeframes = ['M5']
 timeframe_lookup = {'M1':1,'M5':5,'M15':15,'M30':30,'H1':60,'H4':240,
                     'D1':1440,'W1':7200}#This is just a reference. Don't modify
                                         #this.

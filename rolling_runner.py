@@ -20,14 +20,14 @@ live_file_path = filepaths['Live']
 
 
 # setup .txt file parameters
-txt_file_path = "C:/Program Files (x86)/OANDA - MetaTrader" # Same as batch_file_path from big_master_backtests_generator.py
+txt_file_path = filepaths['MT-4'] # Same as batch_file_path from big_master_backtests_generator.py
 filename_txt = 'setup_live_ea.txt'
 symbol = 'AUDUSD'
-period = 'M1' # This is the ea chart period, not the rolling_runner update period
+period = 'M5' # This is the ea chart period, not the rolling_runner update period. That's the reset_period
 expert = 'DiscreteModelMaker/IndiaDiscreteModelMaker'
 
 # setup .set file parameters
-set_file_path = "C:/Program Files (x86)/OANDA - MetaTrader/MQL4/Presets"
+set_file_path = filepaths['MT-4Presets']
 filename_set = 'setup_live_ea.set'
 long_back_1 = 0
 long_back_2 = 0
@@ -41,7 +41,7 @@ filename_bat = 'setup_live_ea.bat'
 
 
 # Rolling_runner update frequency (seconds) - This is the period for dictating
-# when the body of the code (below) runs.
+# the frequency at which the body of the code (below) runs.
 reset_period = 60 # Reset every ____ seconds.
 
 os.chdir(live_file_path)
@@ -52,10 +52,11 @@ start = False
 while True:
     # Start_cond is for when to start it. The whole system should update itself
     # (start).
-    start_cond = datetime.weekday(datetime.now()) in range(5) and datetime.now().hour == 1 and datetime.now().minute == 17 # and int(datetime.timestamp(datetime.now())) % reset_period ==0
+    start_cond = datetime.weekday(datetime.now()) in range(5) and datetime.now().hour == 0 and datetime.now().minute == 6 # and int(datetime.timestamp(datetime.now())) % reset_period ==0
                   #Wait until 1:17 on a weekday
     #print(int(datetime.timestamp(datetime.now())) % reset_period)
-    time.sleep(0.99)
+    
+    time.sleep(0.99) #Sleep (delay program) for 0.99 seconds
 
     
     # Start master_hyper_setup.py which sets everything up and runs the backtest(s)
