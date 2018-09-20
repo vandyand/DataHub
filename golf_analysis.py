@@ -15,9 +15,12 @@ back_file_path = filepaths['Back']
 live_file_path = filepaths['Live']
 os.chdir(data_hub_file_path)
 
+print("Running golf_analysis.py...")
+
 try:
     hyper_iterator = int(sys.argv[1])
-except Exception:
+except Exception as e:
+    print(str(e))
     hyper_iterator = 0
 
 if sum(1 for line in open('hyperparameters.txt'))==40:
@@ -100,7 +103,7 @@ properties = np.array(['bprofit','bprofit_factor','bexpected_payoff','bnum_trade
               'bsharpe','bsortino','bstd'])
 num_combinations = 2**len(properties) - 1
 for i in range(1,num_combinations):
-    if i%int(num_combinations/20)==0:
+    if i%int(num_combinations/5)==0:
             print('{}%'.format(round(i/num_combinations*100,0)))
     
     for dataa in datas:
@@ -164,7 +167,7 @@ for sample_start in sample_starts:
                 str_model_trades))
 
         if(agg_std>0 and agg_mean>0 and (st.norm.cdf((agg_mean-(-0.15))/agg_std*agg_num_trades**0.5)>0.95)):
-            print("Set: {0: >4}, Item: {1: >2}, Score num: {2: >3}, mean: {3: <6}, std: {4: <6}, sharpe: {5: <6}, num_trades: {6: >3}, z_score: {7: <6}, p_value: {8: <6}, profit: {9: >6}, trades: {10}\n".format(
+            print("Set: {0: >4}, Item: {1: >2}, Score num: {2: >3}, mean: {3: <6}, std: {4: <6}, sharpe: {5: <6}, num_trades: {6: >3}, z_score: {7: <6}, p_value: {8: <6}, profit: {9: >6}\n".format(
                 data_set_num,sample_start,score_num,
                 round(agg_mean,4),
                 round(agg_std,4),
@@ -172,8 +175,7 @@ for sample_start in sample_starts:
                 round(agg_num_trades,4),
                 round((agg_mean-(-0.15))/agg_std*agg_num_trades**0.5,4),
                 round(st.norm.cdf((agg_mean-(-0.15))/agg_std*agg_num_trades**0.5),4),
-                round(agg_mean*agg_num_trades,2),
-                str_model_trades))
+                round(agg_mean*agg_num_trades,2)))
 
 results_file.close()
 print("Done writing to file")

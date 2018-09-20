@@ -2,16 +2,22 @@
 
 import os
 import sys
+from filepaths import filepaths as fps
+
+filepaths = fps()
+
+data_hub_file_path = filepaths['DataHub']
+back_file_path = filepaths['Back']
+live_file_path = filepaths['Live']
+ini_file_paths = [filepaths['MT-1tester'],filepaths['MT-2tester'],
+                  filepaths['MT-3tester']]
+
 
 try:
     genetic = int(sys.argv[1])
 except Exception:
     genetic = 1
     
-ini_file_paths = ["C:/Program Files (x86)/OANDA - MetaTrader/tester",
-                          "C:/Program Files (x86)/OANDA - MetaTrader - Copy/tester",
-                          "C:/Program Files (x86)/OANDA - MetaTrader - Copy (2)/tester"]
-
 for i in range(3):
     os.chdir(ini_file_paths[i])
     os.remove('EchoDiscreteModelMaker.ini')

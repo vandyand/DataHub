@@ -14,6 +14,9 @@ data_hub_file_path = filepaths['DataHub']
 back_file_path = filepaths['Back']
 live_file_path = filepaths['Live']
 
+
+print("Running live_analysis.py...")
+
 os.chdir(data_hub_file_path)
 
 try:

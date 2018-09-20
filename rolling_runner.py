@@ -19,6 +19,14 @@ data_hub_file_path = filepaths['DataHub']
 live_file_path = filepaths['Live']
 
 
+# Score and Item number from final_results.txt file in the back directory. Not 
+# reading them in from file because I'm trying to separate the live from
+# backtesting processes.
+score_num = 1
+item_num = 2
+
+
+
 # setup .txt file parameters
 txt_file_path = filepaths['MT-4'] # Same as batch_file_path from big_master_backtests_generator.py
 filename_txt = 'setup_live_ea.txt'
@@ -49,14 +57,18 @@ os.chdir(live_file_path)
 count = 0
 start = False
 
+
+hour_cond = datetime.now().hour
+minute_cond = datetime.now().minute
+
 while True:
     # Start_cond is for when to start it. The whole system should update itself
     # (start).
-    start_cond = datetime.weekday(datetime.now()) in range(5) and datetime.now().hour == 0 and datetime.now().minute == 6 # and int(datetime.timestamp(datetime.now())) % reset_period ==0
+    start_cond = datetime.weekday(datetime.now()) in range(5) and datetime.now().hour == hour_cond and datetime.now().minute == minute_cond # and int(datetime.timestamp(datetime.now())) % reset_period ==0
                   #Wait until 1:17 on a weekday
     #print(int(datetime.timestamp(datetime.now())) % reset_period)
     
-    time.sleep(0.99) #Sleep (delay program) for 0.99 seconds
+    time.sleep(0.99) #Sleep (delay program) for 1 second
 
     
     # Start master_hyper_setup.py which sets everything up and runs the backtest(s)
@@ -75,8 +87,6 @@ while True:
     # when the above is done read the output file to get the right parameters
     # for the live test strategy. The output file is named
     # final_ea_params-Set####.txt in the "Live" directory.
-#    os.chdir(live_file_path)
-#    if start and file_condition:
         os.chdir(live_file_path)
         final_ea_params_filename = [ i for i in os.listdir() if '.txt' in i if str(datetime.now().year)+str(datetime.now().month).zfill(2) in i ][-1]
         with open(live_file_path+'\\'+final_ea_params_filename,'r') as params_file:

@@ -11,6 +11,9 @@ filepaths = fps()
 data_hub_file_path = filepaths['DataHub']
 back_file_path = filepaths['Back']
 
+
+print("Running final_analysis.py...")
+
 os.chdir(data_hub_file_path)
 
 hyper_lines_per_iterator = 40

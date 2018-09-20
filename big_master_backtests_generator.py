@@ -33,7 +33,8 @@ for i in contents.split('\n'):
 import sys
 try:
     hyper_iterator = int(sys.argv[1])
-except Exception:
+except Exception as e:
+    print(str(e))
     hyper_iterator = 0
 
 if sum(1 for line in open('hyperparameters.txt'))==40:

@@ -36,11 +36,8 @@ else: #Modify these values for custom start datetime (really end...)
     start_day = 31
 
 
-
     
-data_set_num = 5001
-if rolling_runner:
-    data_set_num = int(str(datetime.now().year)+str(datetime.now().month).zfill(2)+str(datetime.now().day).zfill(2)+str(datetime.now().hour).zfill(2)+str(datetime.now().minute).zfill(2)+str(datetime.now().second).zfill(2)+'0000')
+data_set_num = int(str(datetime.now().year)+str(datetime.now().month).zfill(2)+str(datetime.now().day).zfill(2)+str(datetime.now().hour).zfill(2)+str(datetime.now().minute).zfill(2)+str(datetime.now().second).zfill(2))
 
 EA = "DiscreteModelMaker\IndiaDiscreteModelMaker"
 symbols = ['GBPUSD']
@@ -206,6 +203,7 @@ python big_master_backtests_generator.py {}
 start /wait "" "master_batch_file.bat"
 
 '''.format(data_set_num))
+
                             if back_or_live==0:
                                 mamamamaster_file.write('''python golf_analysis.py {}
 '''.format(data_set_num))
