@@ -7,10 +7,11 @@ Created on Fri Sep 14 20:51:21 2018
 
 import os
 
-
-
 def filepaths():
-    os.chdir('C:\\users\\dell\\desktop\\pythonalgofolder\\datahub')
+    if os.environ['COMPUTERNAME'] == 'DELL-PC':
+        os.chdir('C:\\users\\dell\\desktop\\pythonalgofolder\\datahub')
+    else:
+        os.chdir('C:\\users\\Administrator\\desktop\\pythonalgofolder\\datahub')
     with open('filepaths.txt','r') as file:
         filepaths = file.read().split('\n')
         filepaths = {t[0]:t[1] for t in [ i.split('=') for i in filepaths ]}
