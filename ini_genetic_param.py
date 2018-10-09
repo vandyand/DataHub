@@ -9,8 +9,8 @@ filepaths = fps()
 data_hub_file_path = filepaths['DataHub']
 back_file_path = filepaths['Back']
 live_file_path = filepaths['Live']
-ini_file_paths = [filepaths['MT-1tester'],filepaths['MT-2tester'],
-                  filepaths['MT-3tester']]
+ini_file_paths = [filepaths['MT-7tester'],filepaths['MT-8tester'],
+                  filepaths['MT-9tester']]
 
 
 try:

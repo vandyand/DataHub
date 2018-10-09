@@ -6,8 +6,8 @@ from filepaths import filepaths as fps
 
 filepaths = fps()
 
-ea_paths = [filepaths['MT-1Experts'],filepaths['MT-2Experts'],
-            filepaths['MT-3Experts']]
+ea_paths = [filepaths['MT-7Experts'],filepaths['MT-8Experts'],
+            filepaths['MT-9Experts']]
 
 #try:
 #    shutil.rmtree(ea_paths[1])

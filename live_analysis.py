@@ -119,9 +119,9 @@ for i in range(1,num_combinations):
         dataa['bscore{}'.format(i)] = product
 
 os.chdir(back_file_path)
-final_results_file = open('final_results.txt','r')
-sett, item, score = [ int(i) for i in final_results_file.read().split('\n')[1].split(',') ]
-final_results_file.close()
+final_results_filename = [ i for i in os.listdir() if '.txt' in i ][-1]
+with open(final_results_filename,'r') as final_results_file:
+    sett, item, score = [ int(i) for i in final_results_file.read().split('\n')[1].split(',') ]
 
 
 final_ea_params = final_data[0].sort_values('bscore{}'.format(score),ascending=False).iloc[item-1,2:7]

@@ -20,9 +20,9 @@ def filepaths():
         filepaths.pop('DataHub2',None)
         filepaths['Back'] = filepaths['DataHub']+'\\Back'
         filepaths['Live'] = filepaths['DataHub']+'\\Live'
-        for i in range(2,7):
+        for i in range(2,11):
             filepaths['MT-{}'.format(i)] = filepaths['MT-1'][:-1]+str(i)
-        for i in range(1,7):
+        for i in range(1,11):
             filepaths['MT-{}tester'.format(i)] = filepaths['MT-{}'.format(i)]+'\\tester'
             filepaths['MT-{}templates'.format(i)] = filepaths['MT-{}'.format(i)]+'\\templates'
             filepaths['MT-{}Experts'.format(i)] = filepaths['MT-{}'.format(i)]+'\\MQL4\\Experts'

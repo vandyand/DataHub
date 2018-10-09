@@ -2,6 +2,7 @@
 
 import os
 import pandas as pd
+import numpy as np
 import re
 import matplotlib.pyplot as plt
 from filepaths import filepaths as fps
@@ -54,22 +55,26 @@ data = data.sort_values(['z_score','item'],ascending=[False,True])
 
 print(data.head(20))
 
-model_trades = data['trades'].iloc[0]
-model_equity = [1000]
-a = [model_equity.append(model_trades[x]*10+model_equity[x]) for x in range(len(model_trades))]
-plt.plot(model_equity)
-plt.title('Equity with fixed size')
-plt.show()
-print("Final Equity: {}".format(round(model_equity[-1],2)))
-model_equity = [1000]
-a = [model_equity.append(model_trades[x]*model_equity[x]*0.01+model_equity[x]) for x in range(len(model_trades))]
-plt.plot(model_equity)
-plt.title('Equity with percent size')
-plt.show()
-print("Final Equity: {}".format(round(model_equity[-1],2)))
+try:
 
-print(data.iloc[0][['set','item','score']])
+    model_trades = data['trades'].iloc[0]
+    model_equity = [1000]
+    a = [model_equity.append(model_trades[x]*10+model_equity[x]) for x in range(len(model_trades))]
+    plt.plot(model_equity)
+    plt.title('Equity with fixed size')
+    plt.show()
+    print("Final Equity: {}".format(round(model_equity[-1],2)))
+    model_equity = [1000]
+    a = [model_equity.append(model_trades[x]*model_equity[x]*0.01+model_equity[x]) for x in range(len(model_trades))]
+    plt.plot(model_equity)
+    plt.title('Equity with percent size')
+    plt.show()
+    print("Final Equity: {}".format(round(model_equity[-1],2)))
+    
+    print(data.iloc[0][['set','item','score']])
 
+except Exception:
+    data = pd.DataFrame(np.array([[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]]).T,columns=data.columns) 
 
 os.chdir(back_file_path)
 

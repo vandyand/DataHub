@@ -6,9 +6,9 @@ from filepaths import filepaths as fps
 filepaths = fps()
 
 data_hub_file_path = filepaths['DataHub']
-batch_file_paths = [filepaths['MT-1'],filepaths['MT-2'],filepaths['MT-3']]
-params_sets_file_paths = [filepaths['MT-1tester'],filepaths['MT-2tester'],
-                          filepaths['MT-3tester']]
+batch_file_paths = [filepaths['MT-7'],filepaths['MT-8'],filepaths['MT-9']]
+params_sets_file_paths = [filepaths['MT-7tester'],filepaths['MT-8tester'],
+                          filepaths['MT-9tester']]
 
 
 for i in range(3):
